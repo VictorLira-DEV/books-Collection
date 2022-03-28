@@ -59,8 +59,15 @@ CRUD App using MERN Stack, it uses ReactJS for Front-end, NodeJS, Express For th
 To run the application on the web, follow the instructions :
 - `make sure you are inside the project's folder on VScode`
 - `open up a terminal`
-- run `yarn install` to install the dependencies of the project
-- inside the "server" folder run `yarn run devStart`<-- this will provide our data,  address `localhost:3004` 
-- open a new terminal, inside the "client" folder, run `yarn start` to run the application, will open at the address `localhost:3000`
+- run `cd client`
+- run `yarn install` to install the client dependencies of the project
+- then run `yarn start` to run the application, will open at the address `localhost:3000`
+- `open up a new terminal`
+- run `cd server`
+- run `yarn install` to install the API dependencies of the project
+- then run `yarn run devStart` to run the API, will open at the address `localhost:3004`
+<br>
+
+
 <br>
 
