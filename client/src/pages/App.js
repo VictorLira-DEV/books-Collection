@@ -1,9 +1,8 @@
 import "../styles/App/App.css";
 import Home from '../components/Home';
-import AddNewBook from '../components/AddNewBook';
-import EditBook from '../components/EditBook';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { GlobalProvider } from "../components/context/GlobalState";
+import AddNewTransaction from "../components/AddNewTransaction";
 
 function App() {
     return (
@@ -12,8 +11,7 @@ function App() {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home}  />
-                        <Route path="/add" component={AddNewBook}  />
-                        <Route path="/edit/:id" component={EditBook}  />
+                        <Route path="/addTransaction" component={AddNewTransaction}  />
                     </Switch>
                 </Router>
             </GlobalProvider>

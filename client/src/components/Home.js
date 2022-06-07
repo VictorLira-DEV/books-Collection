@@ -1,16 +1,24 @@
-import BookList from './BookList';
 import Heading from '../components/Heading';
 import React from 'react'
+import SpentAnalysis from "./SpentAnalysis";
+import DateRange from "./DateRange";
 
-const Home = () => {
+const Home = (props) => {
     return(
         <React.Fragment>
             <Heading>
 
             </Heading>
-            <BookList>
+            {/*<TransactionList>*/}
+            {/*</TransactionList>*/}
+            <SpentAnalysis
+                sdate={props.sdate}
+                edate={props.edate}
+            >
+            </SpentAnalysis>
+            {/*<DateRange>*/}
 
-            </BookList>
+            {/*</DateRange>*/}
         </React.Fragment>
     )
 }

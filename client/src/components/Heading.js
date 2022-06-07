@@ -9,9 +9,9 @@ const Heading = () => {
             <header className={styles.header}>
                 <nav>
                     <li>
-                        <Link className={styles.link} to="/add">
+                        <Link className={styles.link} to="/addTransaction">
                             <BiPlus/>
-                            Add Book
+                            Add Transaction
                         </Link>
                     </li>
                 </nav>

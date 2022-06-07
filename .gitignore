@@ -1,0 +1,48 @@
+##########################
+# Application specfic
+##########################
+*/config/
+##########################
+# General
+##########################
+
+#####
+# OS X temporary files
+#
+# c.f. http://www.westwind.com/reference/os-x/invisibles.html
+.DS_Store
+
+# c.f. http://www.westwind.com/reference/os-x/invisibles.html
+.Trashes
+
+# c.f. http://www.westwind.com/reference/os-x/invisibles.html
+*.swp
+
+#####
+# Node stuff
+#
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directory
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules

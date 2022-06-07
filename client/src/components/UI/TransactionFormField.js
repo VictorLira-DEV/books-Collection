@@ -1,6 +1,6 @@
 import styles from "../../styles/UI/UserFormField/UserFormField.module.css";
 
-const BookFormField = (props) => {
+const TransactionFormField = (props) => {
     return (
         <div className={styles.form_control}>
             <label>{props.label}</label>
@@ -16,4 +16,4 @@ const BookFormField = (props) => {
     );
 };
 
-export default BookFormField;
+export default TransactionFormField;

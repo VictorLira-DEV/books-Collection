@@ -1,38 +1,44 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const mongoConfig = require("./config/mongoConfig");
 const cors = require("cors");
-const BookModel = require("./models/book");
+const TransactionModel = require("./models/transaction");
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
+const uri = mongoConfig.url + mongoConfig.database;
+
 mongoose.connect(
-    "mongodb+srv://dbUser:parafernalha@crud.j1xvh.mongodb.net/book?retryWrites=true&w=majority",
+    uri,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }
 );
 
-app.post("/insert", async (req, res) => {
-    const bookName = req.body.bookName;
-    const bookPrice = req.body.bookPrice;
-    const bookAuthor = req.body.bookAuthor;
-    const bookCategory = req.body.bookCategory
-    const book = new BookModel({bookName: bookName, bookPrice: bookPrice, bookAuthor: bookAuthor, bookCategory: bookCategory});
+
+
+app.post("/addTransaction", async (req, res) => {
+    const orderId = req.body.orderId;
+    const amount = req.body.amount;
+    const category = req.body.category;
+    const cashback = req.body.cashback;
+    const transaction = new TransactionModel({orderId: orderId, amount: amount, category: category, cashback:cashback});
 
     try {
-        await book.save();
+        await transaction.save();
         res.send("inserted data");
     } catch (err) {
         console.log(err);
     }
 });
 
-app.get("/read", async (req, res) => {
+
+app.get("/readTransactions", async (req, res) => {
     // FoodModel.find({$where: {foodName:  "Apple"}}, )
-    BookModel.find({}, (err, results) => {
+    TransactionModel.find({}, (err, results) => {
         if (err) {
             res.send(err);
         }
@@ -41,31 +47,24 @@ app.get("/read", async (req, res) => {
     });
 });
 
-app.put("/update", async (req, res) => {
-    const id = req.body.id;
-    const bookName = req.body.bookName;
-    const bookAuthor = req.body.bookAuthor;
-    const bookPrice = req.body.bookPrice;
-    const bookCategory = req.body.bookCategory;
-    try {
-        await BookModel.findById(id, (err, updateBook) => {
-            updateBook.bookName = bookName;
-            updateBook.bookAuthor = bookAuthor;
-            updateBook.bookPrice = bookPrice;
-            updateBook.bookCategory = bookCategory;
-            updateBook.save();
-            res.send("updated");
-        });
-    } catch (err) {
-        console.log(err);
-    }
+app.get("/spentAnalysisWithDate", async (req, res) => {
+    const sdate = req.query.sdate;
+    const edate = req.query.edate;
+    TransactionModel.aggregate([
+            { "$match": {
+                    "date": {"$gte": new Date(sdate), "$lte": new Date(edate)}
+            }},
+            { $group:{ _id:'$category', totalSpent: { $sum:'$amount'}, totalCashBack: {$sum:'$cashback'}}}
+        ],
+        (err, results) => {
+            if (err) {
+                res.send(err);
+            }
+            res.send(results);
+        })
 });
 
-app.delete("/delete/:id", async (req, res) => {
-    const id = req.params.id;
-    await BookModel.findByIdAndRemove(id).exec();
-    res.send("deleted");
-});
+
 
 app.listen(3004, () => {
     console.log("server runnig on port 3004");
