@@ -4,25 +4,43 @@
   color: #525252;
 }
 
+.form .invalid {
+  border: 1px solid red;
+}
+
 .form .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 14px;
-  margin-top: 30px;
+  font-size: 15px;
+  margin-top: 25px;
 }
 
-.form .buttons .edit_book {
-  font-size: 14px;
-  margin-right: 5px;
-  padding: 6px 12px 6px 10px;
-  background: #f8f548;
+.form .buttons .disabled {
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: not-allowed;
+  padding: 6px 12px 6px 12px;
+  background: #989999;
+  color: white;
+  font-size: 15px;
+}
+
+.form .buttons .submit {
+  -webkit-transition: 1s;
+  transition: 1s;
+  padding: 6px 12px 6px 12px;
+  background: #16b8e0;
+  color: white;
+  font-size: 15px;
 }
 
 .form .buttons .link {
   background: #f74141;
+  margin-left: 5px;
   border-radius: 5px;
-  padding: 10px 12px 10px 9px;
+  padding: 6px 12px 6px 9px;
+  line-height: 23px;
   text-decoration: none;
   color: white;
   display: -webkit-box;
@@ -39,4 +57,4 @@
 .form .buttons .link :first-child {
   margin-right: 5px;
 }
-/*# sourceMappingURL=EditBook.module.css.map */
+/*# sourceMappingURL=AddNewTransaction.module.css.map */

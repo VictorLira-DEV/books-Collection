@@ -1,6 +1,6 @@
-import BookList from './BookList';
 import Heading from '../components/Heading';
 import React from 'react'
+import TransactionList from "./TransactionList";
 
 const Home = () => {
     return(
@@ -8,9 +8,8 @@ const Home = () => {
             <Heading>
 
             </Heading>
-            <BookList>
-
-            </BookList>
+            <TransactionList>
+            </TransactionList>
         </React.Fragment>
     )
 }

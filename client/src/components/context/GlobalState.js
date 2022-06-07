@@ -4,7 +4,7 @@ import {AppReducer} from './AppReducer';
 
 //initial state;
 const initialState = {
-    books: []
+    transactions: []
 }
 
 // create Context
@@ -14,46 +14,31 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = (({children}) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
         useEffect(() => {
-            Axios.get("http://localhost:3004/read").then((response) => {
+            Axios.get("http://localhost:3004/readTransactions").then((response) => {
                 dispatch({type: 'INITIAL_DATA', payload: response.data})
             });
         }, []);
 
-    //actions
-    const removeBook = (id) => {
-        dispatch({
-            type: 'REMOVE_BOOK',
-            payload: id
-        })
 
-    }
 
-    const addBook = (book) => {
+    const addTransaction = (transaction) => {
         dispatch({
-            type: 'ADD_BOOK',
-            payload: book
+            type: 'ADD_TRANSACTION',
+            payload: transaction
         })
 
         setTimeout(() => {
-            Axios.get("http://localhost:3004/read").then((response) => {
+            Axios.get("http://localhost:3004/readTransactions").then((response) => {
                 dispatch({type: 'INITIAL_DATA', payload: response.data})
-            });  
+            });
         },500)
     }
 
-    const editBook = (book) => {
-        dispatch({
-            type: 'EDIT_BOOK',
-            payload: book,
-        })
-    }
      
     return(
         <GlobalContext.Provider value={{
-            books: state.books,
-            removeBook,
-            addBook,
-            editBook,
+            transactions : state.transactions,
+            addTransaction,
         }}>
             {children}
         </GlobalContext.Provider>
