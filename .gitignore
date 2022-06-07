@@ -1,8 +1,8 @@
 ##########################
 # Application specfic
 ##########################
-config/config.js
-*Config.js
+server/config/mongoConfig.js
+*/*Config.js
 ##########################
 # General
 ##########################
