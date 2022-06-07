@@ -46,31 +46,24 @@ app.get("/readTransactions", async (req, res) => {
     });
 });
 
-// app.put("/update", async (req, res) => {
-//     const id = req.body.id;
-//     const bookName = req.body.bookName;
-//     const bookAuthor = req.body.bookAuthor;
-//     const bookPrice = req.body.bookPrice;
-//     const bookCategory = req.body.bookCategory;
-//     try {
-//         await BookModel.findById(id, (err, updateBook) => {
-//             updateBook.bookName = bookName;
-//             updateBook.bookAuthor = bookAuthor;
-//             updateBook.bookPrice = bookPrice;
-//             updateBook.bookCategory = bookCategory;
-//             updateBook.save();
-//             res.send("updated");
-//         });
-//     } catch (err) {
-//         console.log(err);
-//     }
-// });
+app.get("/spentAnalysisWithDate", async (req, res) => {
+    const sdate = req.query.sdate;
+    const edate = req.query.edate;
+    TransactionModel.aggregate([
+            { "$match": {
+                    "date": {"$gte": new Date(sdate), "$lte": new Date(edate)}
+            }},
+            { $group:{ _id:'$category', totalSpent: { $sum:'$amount'}}}
+        ],
+        (err, results) => {
+            if (err) {
+                res.send(err);
+            }
+            res.send(results);
+        })
+});
 
-// app.delete("/delete/:id", async (req, res) => {
-//     const id = req.params.id;
-//     await BookModel.findByIdAndRemove(id).exec();
-//     res.send("deleted");
-// });
+
 
 app.listen(3004, () => {
     console.log("server runnig on port 3004");
