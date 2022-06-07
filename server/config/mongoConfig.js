@@ -1,4 +1,4 @@
 module.exports = {
-    url: 'replace with actual uri',
+    url: 'mongodb+srv://PayHack22:Password@cluster0.5bzwmht.mongodb.net/',
     database: 'pay-hack'
 }

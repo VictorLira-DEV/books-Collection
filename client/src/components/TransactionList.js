@@ -12,8 +12,7 @@ const TransactionList = () => {
                     <th >Order Id</th>
                     <th >Amount</th>
                     <th >Category</th>
-                    <th >Date</th>\
-                    <th>Cashback</th>
+                    <th >Date</th>
                 </tr>
             </thead>
             {transactions.length > 0 && (

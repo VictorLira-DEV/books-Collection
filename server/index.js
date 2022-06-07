@@ -24,7 +24,8 @@ app.post("/addTransaction", async (req, res) => {
     const orderId = req.body.orderId;
     const amount = req.body.amount;
     const category = req.body.category;
-    const transaction = new TransactionModel({orderId: orderId, amount: amount, category: category});
+    const cashback = req.body.cashback;
+    const transaction = new TransactionModel({orderId: orderId, amount: amount, category: category, cashback:cashback});
 
     try {
         await transaction.save();

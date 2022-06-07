@@ -145,7 +145,7 @@ const AddTransaction = () => {
                 label="CashBack"
                 value={cashback.value}
                 type="number"
-                placeholder="enter amount"
+                placeholder="enter cashback"
                 onChange={onCashbackChange}
                 className={`${amount.isValid === false ? styles.invalid : ''}`}
             />

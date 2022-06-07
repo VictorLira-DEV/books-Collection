@@ -44,16 +44,18 @@ export const GlobalProvider = (({children}) => {
 
     const changeDateRange = (date) => {
         const startDate = new Date(date.sdate.startDate); // pass in date param here
-        var dd = String(startDate.getDate()).padStart(2, '0');
-        var mm = String(startDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = startDate.getFullYear();
-        var formattedDate = yyyy + '-' + mm + '-' + dd;
+        var formattedDate = startDate.getFullYear()
+            + '-'
+            + String(startDate.getMonth() + 1).padStart(2, '0')
+            + '-'
+            + String(startDate.getDate()).padStart(2, '0');
         const sdate = formattedDate;
         const endDate = new Date(date.edate.endDate); // pass in date param here
-        dd = String(endDate.getDate()).padStart(2, '0');
-        mm = String(endDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        yyyy = endDate.getFullYear();
-        formattedDate = yyyy + '-' + mm + '-' + dd;
+        formattedDate =  endDate.getFullYear()
+            + '-'
+            + String(endDate.getMonth() + 1).padStart(2, '0')
+            + '-'
+            + String(endDate.getDate()).padStart(2, '0');;
         const edate = formattedDate;
         console.log(sdate.startDate);
         const url = "http://localhost:3004/spentAnalysisWithDate?sdate=" + sdate + "&edate=" + edate;
