@@ -3,27 +3,23 @@ import { GlobalContext } from "./context/GlobalState";
 import styles from "../styles/TransactionList/TransactionList.module.css";
 
 const TransactionList = () => {
-    const { transactions } = useContext(GlobalContext);
+    const { spentAnalysis } = useContext(GlobalContext);
 
     return (
         <table className={styles["content-table"]}>
             <thead>
                 <tr>
-                    <th >Order Id</th>
-                    <th >Amount</th>
                     <th >Category</th>
-                    <th >Date</th>
+                    <th >Amount</th>
                 </tr>
             </thead>
-            {transactions.length > 0 && (
+            {spentAnalysis.length > 0 && (
                 <tbody>
-                    {transactions.map((transaction) => {
+                    {spentAnalysis.map((spent) => {
                         return (
-                            <tr key={transaction._id}>
-                                <td>{transaction.orderId}</td>
-                                <td>{transaction.amount}</td>
-                                <td>{transaction.category}</td>
-                                <td>{transaction.date}</td>
+                            <tr key={spent._id}>
+                                <td>{spent._id}</td>
+                                <td>{spent.totalSpent}</td>
                             </tr>
                         );
                     })}
