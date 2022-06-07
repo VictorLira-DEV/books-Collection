@@ -2,8 +2,9 @@ import Heading from '../components/Heading';
 import React from 'react'
 //import TransactionList from "./TransactionList";
 import SpentAnalysis from "./SpentAnalysis";
+import DateRange from "./DateRange";
 
-const Home = () => {
+const Home = (props) => {
     return(
         <React.Fragment>
             <Heading>
@@ -11,7 +12,13 @@ const Home = () => {
             </Heading>
             {/*<TransactionList>*/}
             {/*</TransactionList>*/}
-            <SpentAnalysis>
+            <DateRange>
+
+            </DateRange>
+            <SpentAnalysis
+                sdate={props.sdate}
+                edate={props.edate}
+            >
 
             </SpentAnalysis>
         </React.Fragment>

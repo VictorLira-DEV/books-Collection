@@ -42,12 +42,27 @@ export const GlobalProvider = (({children}) => {
         },500)
     }
 
+    const changeDateRange = (date) => {
+        const sdate = date.sdate;
+        const edate = date.edate;
+        const url = "http://localhost:3004/spentAnalysisWithDate?sdate=" + sdate + "&edate=" + edate;
+
+            // Axios.get("http://localhost:3004/readTransactions").then((response) => {
+            //     dispatch({type: 'INITIAL_DATA', payload: response.data})
+            // });
+            Axios.get(url).then((response) => {
+                dispatch({type: 'INITIAL_DATA', payload: response.data})
+            });
+
+    }
+
      
     return(
         <GlobalContext.Provider value={{
             //transactions : state.transactions,
             spentAnalysis: state.spentAnalysis,
             addTransaction,
+            changeDateRange,
         }}>
             {children}
         </GlobalContext.Provider>

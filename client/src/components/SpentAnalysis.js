@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "./context/GlobalState";
 import styles from "../styles/TransactionList/TransactionList.module.css";
 
-const TransactionList = () => {
+const SpentAnalysis = (props) => {
     const { spentAnalysis } = useContext(GlobalContext);
 
     return (
@@ -29,4 +29,4 @@ const TransactionList = () => {
     );
 };
 
-export default TransactionList;
+export default SpentAnalysis;
