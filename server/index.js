@@ -53,7 +53,7 @@ app.get("/spentAnalysisWithDate", async (req, res) => {
             { "$match": {
                     "date": {"$gte": new Date(sdate), "$lte": new Date(edate)}
             }},
-            { $group:{ _id:'$category', totalSpent: { $sum:'$amount'}}}
+            { $group:{ _id:'$category', totalSpent: { $sum:'$amount'}, totalCashBack: {$sum:'$cashback'}}}
         ],
         (err, results) => {
             if (err) {

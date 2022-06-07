@@ -11,6 +11,7 @@ const SpentAnalysis = (props) => {
                 <tr>
                     <th >Category</th>
                     <th >Amount</th>
+                    <th >CashBack</th>
                 </tr>
             </thead>
             {spentAnalysis.length > 0 && (
@@ -20,6 +21,7 @@ const SpentAnalysis = (props) => {
                             <tr key={spent._id}>
                                 <td>{spent._id}</td>
                                 <td>{spent.totalSpent}</td>
+                                <td>{spent.totalCashBack}</td>
                             </tr>
                         );
                     })}

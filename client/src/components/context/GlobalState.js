@@ -43,10 +43,21 @@ export const GlobalProvider = (({children}) => {
     }
 
     const changeDateRange = (date) => {
-        const sdate = date.sdate;
-        const edate = date.edate;
+        const startDate = new Date(date.sdate.startDate); // pass in date param here
+        var dd = String(startDate.getDate()).padStart(2, '0');
+        var mm = String(startDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = startDate.getFullYear();
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+        const sdate = formattedDate;
+        const endDate = new Date(date.edate.endDate); // pass in date param here
+        dd = String(endDate.getDate()).padStart(2, '0');
+        mm = String(endDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        yyyy = endDate.getFullYear();
+        formattedDate = yyyy + '-' + mm + '-' + dd;
+        const edate = formattedDate;
+        console.log(sdate.startDate);
         const url = "http://localhost:3004/spentAnalysisWithDate?sdate=" + sdate + "&edate=" + edate;
-
+        console.log(url)
             // Axios.get("http://localhost:3004/readTransactions").then((response) => {
             //     dispatch({type: 'INITIAL_DATA', payload: response.data})
             // });

@@ -8,6 +8,9 @@ const TransactionSchema = new mongoose.Schema({
     amount: {
         type: Number
     },
+    cashback: {
+        type: Number
+    },
     category: {
         type: String
     },

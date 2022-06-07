@@ -1,4 +1,4 @@
 module.exports = {
-    url: 'change to actual uri',
+    url: 'replace with actual uri',
     database: 'pay-hack'
 }

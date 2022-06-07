@@ -19,7 +19,7 @@ const AddTransaction = () => {
             if(action.type === "TRANSACTION_INPUT"){
                 return {value: action.val, isValid: action.val.length > 5}
             }
-            
+
             return {value: "", isValid: false}
         },
         {value: "", isValid: null}
@@ -28,6 +28,17 @@ const AddTransaction = () => {
 
     //bookprice
     const [amount, dispatchAmount] = useReducer(
+        (state, action) => {
+            if(action.type === "TRANSACTION_INPUT"){
+                return {value: action.val, isValid: action.val.length >= 1}
+            }
+
+            return {value: "", isValid: false}
+        },
+        {value: "", isValid: null}
+    )
+
+    const [cashback, dispatchCashBack] = useReducer(
         (state, action) => {
             if(action.type === "TRANSACTION_INPUT"){
                 return {value: action.val, isValid: action.val.length >= 1}
@@ -77,13 +88,15 @@ const AddTransaction = () => {
         const newTransaction = {
             orderId: orderId.value,
             amount: amount.value,
-            category: category.value
+            category: category.value,
+            cashback: cashback.value
         };
 
         Axios.post("http://localhost:3004/addTransaction", {
             orderId: orderId.value,
             amount: amount.value,
-            category: category.value
+            category: category.value,
+            cashback: cashback.value
         });
         addTransaction(newTransaction);
         history.push("/");
@@ -93,13 +106,17 @@ const AddTransaction = () => {
         dispatchOrderId({type: "TRANSACTION_INPUT", val: e.target.value} )
     };
 
-    const onAmounrChange = function (e) {
+    const onAmountChange = function (e) {
         dispatchAmount({type: 'TRANSACTION_INPUT', val: e.target.value});
     };
 
     const onCategoryChange = function (e) {
         dispatchCategory({type: "TRANSACTION_INPUT", val: e.target.value})
-        
+
+    };
+
+    const onCashbackChange = function (e) {
+        dispatchCashBack({type: 'TRANSACTION_INPUT', val: e.target.value});
     };
 
 
@@ -120,7 +137,16 @@ const AddTransaction = () => {
                 value={amount.value}
                 type="number"
                 placeholder="enter amount"
-                onChange={onAmounrChange}
+                onChange={onAmountChange}
+                className={`${amount.isValid === false ? styles.invalid : ''}`}
+            />
+
+            <TransactionFormField
+                label="CashBack"
+                value={cashback.value}
+                type="number"
+                placeholder="enter amount"
+                onChange={onCashbackChange}
                 className={`${amount.isValid === false ? styles.invalid : ''}`}
             />
 
